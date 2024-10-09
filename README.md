@@ -11,3 +11,6 @@ How to Use:
 Clone or download the repository.
 Open index.html in a browser.
 Use the interactive controls to explore Flexbox concepts.
+![Screenshot 2024-10-09 at 1 44 08 PM](https://github.com/user-attachments/assets/f3e15319-340d-40aa-96bd-49745881e347)
+![Screenshot 2024-10-09 at 1 44 22 PM](https://github.com/user-attachments/assets/29b8ffda-242e-4065-a3e0-94dfc4123113)
+![Screenshot 2024-10-09 at 1 44 34 PM](https://github.com/user-attachments/assets/451236d5-94ac-41bb-a2bb-965a89eb8756)
