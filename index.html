@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flexbox Learning - Intuitive Visual Guide</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f4f7fb;
+      margin: 0;
+      padding: 20px;
+      color: #333;
+    }
+
+    /* Container to center the content */
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      background-color: #fff;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1, h2 {
+      text-align: center;
+      color: #005a9e;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+
+    h3 {
+      margin-bottom: 10px;
+      font-weight: 600;
+      color: #007acc;
+    }
+
+    p {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #555;
+    }
+
+    /* Flexbox containers */
+    .flex-container {
+      display: flex;
+      justify-content: flex-start;
+      align-items: stretch;
+      flex-wrap: wrap;
+      padding: 20px;
+      background-color: #eef7fd;
+      border: 2px dashed #007acc;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      position: relative;
+      min-height: 150px;
+    }
+
+    /* Flexbox items */
+    .flex-item {
+      background-color: #007acc;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      margin: 5px;
+      border-radius: 8px;
+      transition: transform 0.3s ease, background-color 0.3s ease;
+      min-width: 100px; /* Ensure flex items don't stretch fully */
+    }
+
+    .flex-item:hover {
+      transform: scale(1.05);
+      background-color: #005a9e;
+    }
+
+    /* Button controls */
+    .controls-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 30px;
+    }
+
+    .controls-container button {
+      background-color: #007acc;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 10px 20px;
+      margin: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .controls-container button:hover {
+      background-color: #005a9e;
+      transform: translateY(-2px);
+    }
+
+    /* Current CSS value display */
+    .current-css {
+      text-align: center;
+      font-size: 18px;
+      margin-bottom: 20px;
+      padding: 15px;
+      background-color: #eaf4fc;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      color: #007acc;
+    }
+
+    .current-css span {
+      font-weight: bold;
+    }
+
+    /* Highlight flexbox container on change */
+    .highlight {
+      border-color: #ffc107;
+      box-shadow: 0 0 15px rgba(255, 193, 7, 0.4);
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .flex-container {
+        flex-direction: column;
+      }
+
+      .controls-container button {
+        flex: 1 1 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Learn Flexbox with Visual Guide</h1>
+    <p>Click the buttons below to see how <strong>justify-content</strong>, <strong>align-items</strong>, and <strong>flex-direction</strong> affect the layout of items inside a flex container.</p>
+
+    <!-- Section: Justify-Content -->
+    <h3>Justify-Content: Controls Horizontal Alignment</h3>
+    <p>Controls how items are aligned along the main axis (left to right).</p>
+    <div class="controls-container" id="controls-container">
+      <button onclick="changeJustifyContent('flex-start')">flex-start</button>
+      <button onclick="changeJustifyContent('flex-end')">flex-end</button>
+      <button onclick="changeJustifyContent('center')">center</button>
+      <button onclick="changeJustifyContent('space-between')">space-between</button>
+      <button onclick="changeJustifyContent('space-around')">space-around</button>
+      <button onclick="changeJustifyContent('space-evenly')">space-evenly</button>
+    </div>
+    <div class="flex-container" id="justify-container">
+      <div class="flex-item">Item 1</div>
+      <div class="flex-item">Item 2</div>
+      <div class="flex-item">Item 3</div>
+    </div>
+    <div class="current-css" id="justify-css">Current Justify-Content: <span>flex-start</span></div>
+
+    <!-- Section: Flex-Direction -->
+    <h3>Flex-Direction: Controls Main Axis Direction</h3>
+    <p>Controls the direction of the main axis (row or column).</p>
+    <div class="controls-container" id="direction-controls-container">
+      <button onclick="changeFlexDirection('row')">row</button>
+      <button onclick="changeFlexDirection('row-reverse')">row-reverse</button>
+      <button onclick="changeFlexDirection('column')">column</button>
+      <button onclick="changeFlexDirection('column-reverse')">column-reverse</button>
+    </div>
+    <div class="flex-container" id="direction-container">
+      <div class="flex-item">Item 4</div>
+      <div class="flex-item">Item 5</div>
+      <div class="flex-item">Item 6</div>
+    </div>
+    <div class="current-css" id="direction-css">Current Flex-Direction: <span>row</span></div>
+
+    <!-- Section: Align-Items -->
+    <h3>Align-Items: Controls Vertical Alignment</h3>
+    <p>Controls how items are aligned along the cross axis (vertically).</p>
+    <div class="controls-container" id="align-controls-container">
+      <button onclick="changeAlignItems('stretch')">stretch</button>
+      <button onclick="changeAlignItems('flex-start')">flex-start</button>
+      <button onclick="changeAlignItems('flex-end')">flex-end</button>
+      <button onclick="changeAlignItems('center')">center</button>
+      <button onclick="changeAlignItems('baseline')">baseline</button>
+    </div>
+    <div class="flex-container" id="align-container">
+      <div class="flex-item">Item 7</div>
+      <div class="flex-item">Item 8</div>
+      <div class="flex-item">Item 9</div>
+    </div>
+    <div class="current-css" id="align-css">Current Align-Items: <span>stretch</span></div>
+  </div>
+
+  <script>
+    let currentJustifyContent = 'flex-start';
+    let currentFlexDirection = 'row';
+    let currentAlignItems = 'stretch';
+
+    // Change justify-content for the first section
+    function changeJustifyContent(value) {
+      const justifyContainer = document.getElementById('justify-container');
+      currentJustifyContent = value;
+      justifyContainer.style.justifyContent = value;
+
+      // Highlight the container to show change
+      justifyContainer.classList.add('highlight');
+      setTimeout(() => justifyContainer.classList.remove('highlight'), 800);
+
+      // Update the displayed CSS
+      const justifyCssDisplay = document.getElementById('justify-css');
+      justifyCssDisplay.innerHTML = `Current Justify-Content: <span>${currentJustifyContent}</span>`;
+    }
+
+    // Change flex-direction for the second section
+    function changeFlexDirection(value) {
+      const directionContainer = document.getElementById('direction-container');
+      currentFlexDirection = value;
+      directionContainer.style.flexDirection = value;
+
+      // Update the displayed CSS
+      const directionCssDisplay = document.getElementById('direction-css');
+      directionCssDisplay.innerHTML = `Current Flex-Direction: <span>${currentFlexDirection}</span>`;
+    }
+
+    // Change align-items for the third section
+    function changeAlignItems(value) {
+      const alignContainer = document.getElementById('align-container');
+      currentAlignItems = value;
+      alignContainer.style.alignItems = value;
+
+      // Update the displayed CSS
+      const alignCssDisplay = document.getElementById('align-css');
+      alignCssDisplay.innerHTML = `Current Align-Items: <span>${currentAlignItems}</span>`;
+    }
+  </script>
+
+</body>
+</html>
+
